@@ -1,0 +1,118 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+#define MAX 5
+
+
+// Estrutura da pilha
+typedef struct {
+    int topo;
+    int itens[MAX];
+} Pilha;
+
+
+// Inicializa a pilha
+void inicia_pilha(Pilha *p) {
+    p->topo = -1;  // O topo começa vazio (índice -1)
+    printf("PILHA INICIADA.\n");
+}
+
+
+// Função para verificar se a pilha está cheia
+int is_full(Pilha *p) {
+    return p->topo == MAX - 1;  // Retorna 1 se cheia, 0 caso contrário
+}
+
+
+// Função para verificar se a pilha está vazia
+int is_empty(Pilha *p) {
+    return p->topo == -1;  // Retorna 1 se vazia, 0 caso contrário
+}
+
+
+// Função para adicionar um elemento na pilha
+void push(Pilha *p, int valor) {
+    if (is_full(p)) {
+        printf("Erro: Pilha cheia! Não é possível adicionar %d.\n", valor);
+    } else {
+        p->itens[++p->topo] = valor;  // Adiciona o valor no topo
+        printf("Elemento %d inserido na pilha.\n", valor);
+    }
+}
+
+// Função para remover um elemento da pilha
+int pop(Pilha *p) {
+    if (is_empty(p)) {
+        printf("Erro: Pilha vazia! Não há elementos para remover.\n");
+        return -1;  // Valor de erro
+    } else {
+        int removido = p->itens[p->topo--];  // Remove o valor do topo
+        printf("Elemento %d removido da pilha.\n", removido);
+        return removido;
+    }
+}
+
+
+// Função para visualizar o elemento no topo da pilha
+int peek(Pilha *p) {
+    if (is_empty(p)) {
+        printf("Erro: Pilha vazia! Não há elemento no topo.\n");
+        return -1;  // Valor de erro
+    } else {
+        return p->itens[p->topo];  // Retorna o valor do topo
+    }
+}
+
+
+// Função para exibir todos os elementos da pilha
+void exibir_pilha(Pilha *p) {
+    if (is_empty(p)) {
+        printf("A pilha está vazia.\n");
+    } else {
+        printf("Elementos da pilha (do topo ao fundo):\n");
+        for (int i = p->topo; i >= 0; i--) {
+            printf("%d\n", p->itens[i]);
+        }
+    }
+}
+
+int main() {
+   
+printf("================================\n");
+    Pilha p;  // Declaração da pilha
+    inicia_pilha(&p);  // Inicializa a pilha
+   
+    // Exemplos de uso
+    push(&p, 12);
+    push(&p, 32);
+    pop(&p);  // Remove o último Elemento
+
+
+    printf("Elemento no topo: %d\n", peek(&p));  // Mostra o valor no topo
+
+
+// Verifica se Pilha esta Vazia
+if ( is_empty(&p) ) {
+        printf("A pilha está vazia.\n");
+} else {
+   printf("A pilha já possui itens. \n");
+   
+}
+
+
+// Verifica se Pilha esta Cheia
+if ( is_full(&p) ) {
+   printf("Elemento cheio");
+} else {
+    printf("A lista ainda tem espaço.");
+}
+
+
+
+
+printf("\n================================");
+
+
+}
